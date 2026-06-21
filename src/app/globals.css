@@ -10,6 +10,7 @@
   --accent-warm: #b79a6b;
   --dark: #101312;
   --dark-soft: #151816;
+  --header-height: 56px;
   --font-site:
     Inter, Manrope, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
     Arial, sans-serif;
@@ -52,6 +53,18 @@ a {
 ::selection {
   background: rgba(183, 154, 107, 0.36);
   color: var(--dark);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 68px;
+  }
 }
 
 .hero-slide {

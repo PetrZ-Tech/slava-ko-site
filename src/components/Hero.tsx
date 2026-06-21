@@ -62,7 +62,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative isolate flex min-h-[760px] overflow-hidden bg-[#101312] pt-28 text-[#FCFBF8] sm:min-h-[820px] lg:min-h-screen"
+      className="relative isolate flex min-h-[calc(100svh-var(--header-height))] overflow-hidden bg-[#101312] text-[#FCFBF8]"
       id="top"
       style={hasSlides ? undefined : fallbackHeroStyle}
     >
@@ -88,11 +88,11 @@ export function Hero() {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,19,18,0.84)_0%,rgba(16,19,18,0.68)_42%,rgba(16,19,18,0.34)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_30%,rgba(47,74,60,0.36),transparent_42%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,19,18,0.14)_0%,rgba(16,19,18,0.58)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-[linear-gradient(180deg,transparent,rgba(243,241,236,0.98))]" />
-      <div className="absolute right-[-120px] top-28 -z-10 hidden h-[460px] w-[460px] rounded-full border border-[#B79A6B]/15 lg:block" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-36 bg-[linear-gradient(180deg,transparent,rgba(243,241,236,0.98))] sm:h-40" />
+      <div className="absolute right-[-120px] top-16 -z-10 hidden h-[420px] w-[420px] rounded-full border border-[#B79A6B]/15 lg:block" />
 
       <Container className="flex flex-1 items-center">
-        <div className="grid w-full gap-10 pb-16 pt-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(320px,0.58fr)] lg:items-end lg:pb-24">
+        <div className="grid w-full -translate-y-2 gap-8 pb-10 pt-6 sm:pb-12 sm:pt-8 md:-translate-y-3 lg:-translate-y-5 lg:grid-cols-[minmax(0,1.02fr)_minmax(320px,0.58fr)] lg:items-end lg:pb-10 lg:pt-0">
           <div className="max-w-3xl">
             <p className="mb-5 inline-flex rounded-[4px] border border-[#B79A6B]/45 bg-[#FCFBF8]/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#FCFBF8]/86 backdrop-blur">
               Нижний Новгород и область
@@ -123,43 +123,45 @@ export function Hero() {
             </ul>
           </div>
 
-          <div className="grid grid-cols-2 border border-[#FCFBF8]/16 bg-[#101312]/32 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-md">
-            {heroMetrics.map((metric) => (
-              <div
-                className="min-h-32 border-b border-r border-[#FCFBF8]/12 p-5 last:border-r-0 even:border-r-0 sm:p-6"
-                key={`${metric.value}-${metric.label}`}
-                data-editable-placeholder={metric.editable}
-              >
-                <div className="text-3xl font-semibold leading-none text-[#FCFBF8] sm:text-4xl">
-                  {metric.value}
+          <div className="flex flex-col gap-5 lg:items-end">
+            <div className="grid w-full grid-cols-2 border border-[#FCFBF8]/16 bg-[#101312]/32 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-md">
+              {heroMetrics.map((metric) => (
+                <div
+                  className="min-h-32 border-b border-r border-[#FCFBF8]/12 p-5 last:border-r-0 even:border-r-0 sm:p-6"
+                  key={`${metric.value}-${metric.label}`}
+                  data-editable-placeholder={metric.editable}
+                >
+                  <div className="text-3xl font-semibold leading-none text-[#FCFBF8] sm:text-4xl">
+                    {metric.value}
+                  </div>
+                  <div className="mt-3 text-sm leading-6 text-[#FCFBF8]/66">
+                    {metric.label}
+                  </div>
                 </div>
-                <div className="mt-3 text-sm leading-6 text-[#FCFBF8]/66">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {hasSlides ? (
-            <div
-              aria-label="Слайды главного экрана"
-              className="flex items-center gap-2 lg:col-start-2 lg:justify-end"
-            >
-              {availableHeroSlides.map((slide, index) => (
-                <span
-                  aria-label={slide.title}
-                  className="hero-slide-indicator block h-1 w-10 rounded-full bg-[#FCFBF8]/28"
-                  key={slide.image}
-                  role="img"
-                  style={
-                    {
-                      "--hero-slide-delay": `${index * 6}s`,
-                    } as CSSProperties
-                  }
-                />
               ))}
             </div>
-          ) : null}
+
+            {hasSlides ? (
+              <div
+                aria-label="Слайды главного экрана"
+                className="flex items-center gap-2"
+              >
+                {availableHeroSlides.map((slide, index) => (
+                  <span
+                    aria-label={slide.title}
+                    className="hero-slide-indicator block h-1 w-10 rounded-full bg-[#FCFBF8]/28"
+                    key={slide.image}
+                    role="img"
+                    style={
+                      {
+                        "--hero-slide-delay": `${index * 6}s`,
+                      } as CSSProperties
+                    }
+                  />
+                ))}
+              </div>
+            ) : null}
+          </div>
         </div>
       </Container>
     </section>

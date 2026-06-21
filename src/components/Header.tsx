@@ -14,7 +14,7 @@ export function Header() {
   return (
     <header className="sticky inset-x-0 top-0 z-[100] border-b border-[#F3F1EC]/12 bg-[linear-gradient(90deg,rgba(16,19,18,0.98)_0%,rgba(30,46,37,0.98)_42%,rgba(47,74,60,0.98)_100%)] shadow-[0_14px_36px_rgba(16,19,18,0.18)] backdrop-blur-md">
       <Container>
-        <div className="flex min-h-14 items-center justify-between gap-3 py-2 sm:min-h-16 lg:min-h-[68px]">
+        <div className="flex h-14 items-center justify-between gap-3 sm:h-16 lg:h-[68px]">
           <a
             className="group flex shrink-0 items-center gap-2.5"
             href="#top"
