@@ -1,0 +1,30 @@
+CONNECTION GUIDE
+
+Project: Slava i Ko website
+
+Local address:
+http://localhost:3000
+
+Development command:
+npm run dev
+
+Production build check:
+npm run build
+
+Images:
+public/images/
+
+Backend:
+Not used yet.
+
+Form:
+Frontend structure only. No server submission yet.
+
+Future integrations:
+- Telegram
+- WhatsApp
+- Email
+- CRM
+
+Integration status:
+Planned only. No active external integrations on the current stage.
