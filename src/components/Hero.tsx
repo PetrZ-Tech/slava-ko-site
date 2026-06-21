@@ -4,13 +4,25 @@ import type { CSSProperties } from "react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
-const heroImagePath = "/images/hero-country-house.jpg";
-const heroImageFile = path.join(
-  process.cwd(),
-  "public",
-  "images",
-  "hero-country-house.jpg",
-);
+type HeroSlide = {
+  title: string;
+  image: string;
+};
+
+const heroSlides: HeroSlide[] = [
+  {
+    title: "Проект дома",
+    image: "/images/hero-slider/hero-01-project.png",
+  },
+  {
+    title: "Строительство",
+    image: "/images/hero-slider/hero-02-construction.png",
+  },
+  {
+    title: "Готовый дом",
+    image: "/images/hero-slider/hero-03-finished.png",
+  },
+];
 
 const heroBenefits = [
   "Фиксируем смету и сроки",
@@ -26,22 +38,56 @@ const heroMetrics = [
   { value: "Гарантия", label: "на работы", editable: true },
 ];
 
-const hasHeroImage = existsSync(heroImageFile);
+function hasPublicImage(imagePath: string) {
+  const imageFile = path.join(
+    process.cwd(),
+    "public",
+    imagePath.replace(/^\//, ""),
+  );
 
-const heroStyle: CSSProperties = {
-  backgroundImage: hasHeroImage
-    ? `linear-gradient(105deg, rgba(16, 19, 18, 0.86) 0%, rgba(16, 19, 18, 0.62) 48%, rgba(16, 19, 18, 0.38) 100%), url("${heroImagePath}")`
-    : "radial-gradient(circle at 82% 20%, rgba(183, 154, 107, 0.38), transparent 32%), linear-gradient(135deg, rgba(16, 19, 18, 0.97), rgba(47, 74, 60, 0.86) 54%, rgba(16, 19, 18, 0.95))",
+  return existsSync(imageFile);
+}
+
+const availableHeroSlides = heroSlides.filter((slide) =>
+  hasPublicImage(slide.image),
+);
+
+const fallbackHeroStyle: CSSProperties = {
+  backgroundImage:
+    "radial-gradient(circle at 82% 20%, rgba(183, 154, 107, 0.38), transparent 32%), linear-gradient(135deg, rgba(16, 19, 18, 0.97), rgba(47, 74, 60, 0.86) 54%, rgba(16, 19, 18, 0.95))",
 };
 
 export function Hero() {
+  const hasSlides = availableHeroSlides.length > 0;
+
   return (
     <section
-      className="relative isolate flex min-h-[760px] overflow-hidden bg-[#101312] bg-cover bg-center pt-28 text-[#FCFBF8] sm:min-h-[820px] lg:min-h-screen"
+      className="relative isolate flex min-h-[760px] overflow-hidden bg-[#101312] pt-28 text-[#FCFBF8] sm:min-h-[820px] lg:min-h-screen"
       id="top"
-      style={heroStyle}
+      style={hasSlides ? undefined : fallbackHeroStyle}
     >
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,19,18,0.18)_0%,rgba(16,19,18,0.62)_100%)]" />
+      {hasSlides ? (
+        <div className="absolute inset-0 -z-20">
+          {availableHeroSlides.map((slide, index) => (
+            <div
+              aria-label={slide.title}
+              className="hero-slide absolute inset-0 bg-cover bg-center"
+              key={slide.image}
+              role="img"
+              style={
+                {
+                  "--hero-slide-delay": `${index * 6}s`,
+                  backgroundImage: `url("${slide.image}")`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
+      ) : null}
+
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,19,18,0.84)_0%,rgba(16,19,18,0.68)_42%,rgba(16,19,18,0.34)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_30%,rgba(47,74,60,0.36),transparent_42%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,19,18,0.14)_0%,rgba(16,19,18,0.58)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-[linear-gradient(180deg,transparent,rgba(243,241,236,0.98))]" />
       <div className="absolute right-[-120px] top-28 -z-10 hidden h-[460px] w-[460px] rounded-full border border-[#B79A6B]/15 lg:block" />
 
@@ -93,6 +139,27 @@ export function Hero() {
               </div>
             ))}
           </div>
+
+          {hasSlides ? (
+            <div
+              aria-label="Слайды главного экрана"
+              className="flex items-center gap-2 lg:col-start-2 lg:justify-end"
+            >
+              {availableHeroSlides.map((slide, index) => (
+                <span
+                  aria-label={slide.title}
+                  className="hero-slide-indicator block h-1 w-10 rounded-full bg-[#FCFBF8]/28"
+                  key={slide.image}
+                  role="img"
+                  style={
+                    {
+                      "--hero-slide-delay": `${index * 6}s`,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
       </Container>
     </section>
