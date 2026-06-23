@@ -70,14 +70,49 @@ a {
 .hero-slide {
   animation: hero-slide-fade 18s infinite;
   animation-delay: var(--hero-slide-delay);
+  background-position: var(--hero-slide-mobile-position);
   opacity: 0;
   transform: scale(1);
   will-change: opacity, transform;
 }
 
+.hero-metrics-shell > div > div {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hero-metrics-shell > div > div > div {
+  min-height: 78px;
+  padding: 14px 16px;
+}
+
 .hero-slide-indicator {
   animation: hero-slide-indicator 18s infinite;
   animation-delay: var(--hero-slide-delay);
+}
+
+@media (min-width: 640px) {
+  .hero-slide {
+    background-position: var(--hero-slide-tablet-position);
+  }
+
+  .hero-metrics-shell > div > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-metrics-shell > div > div > div {
+    min-height: 92px;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-slide {
+    background-position: var(--hero-slide-desktop-position);
+  }
+
+  .hero-metrics-shell > div > div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @keyframes hero-slide-fade {

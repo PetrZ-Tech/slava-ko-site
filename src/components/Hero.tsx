@@ -8,20 +8,32 @@ import { Container } from "@/components/ui/Container";
 type HeroSlide = {
   title: string;
   image: string;
+  desktopPosition: string;
+  tabletPosition: string;
+  mobilePosition: string;
 };
 
 const heroSlides: HeroSlide[] = [
   {
     title: "Проект дома",
     image: "/images/hero-slider/hero-01-project.png",
+    desktopPosition: "center",
+    tabletPosition: "48% center",
+    mobilePosition: "42% center",
   },
   {
     title: "Строительство",
     image: "/images/hero-slider/hero-02-construction.png",
+    desktopPosition: "center",
+    tabletPosition: "56% center",
+    mobilePosition: "55% center",
   },
   {
     title: "Готовый дом",
     image: "/images/hero-slider/hero-03-finished.png",
+    desktopPosition: "center",
+    tabletPosition: "58% center",
+    mobilePosition: "58% center",
   },
 ];
 
@@ -65,12 +77,15 @@ export function Hero() {
           {availableHeroSlides.map((slide, index) => (
             <div
               aria-label={slide.title}
-              className="hero-slide absolute inset-0 bg-cover bg-center"
+              className="hero-slide absolute inset-0 bg-cover"
               key={slide.image}
               role="img"
               style={
                 {
                   "--hero-slide-delay": `${index * 6}s`,
+                  "--hero-slide-desktop-position": slide.desktopPosition,
+                  "--hero-slide-tablet-position": slide.tabletPosition,
+                  "--hero-slide-mobile-position": slide.mobilePosition,
                   backgroundImage: `url("${slide.image}")`,
                 } as CSSProperties
               }
@@ -79,14 +94,14 @@ export function Hero() {
         </div>
       ) : null}
 
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,19,18,0.84)_0%,rgba(16,19,18,0.68)_42%,rgba(16,19,18,0.34)_100%)]" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_30%,rgba(47,74,60,0.36),transparent_42%)]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,19,18,0.14)_0%,rgba(16,19,18,0.58)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,19,18,0.94)_0%,rgba(16,19,18,0.84)_52%,rgba(16,19,18,0.60)_100%)] sm:bg-[linear-gradient(90deg,rgba(16,19,18,0.84)_0%,rgba(16,19,18,0.68)_42%,rgba(16,19,18,0.34)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_76%_28%,rgba(47,74,60,0.24),transparent_38%)] sm:bg-[radial-gradient(circle_at_80%_30%,rgba(47,74,60,0.36),transparent_42%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(16,19,18,0.36)_0%,rgba(16,19,18,0.70)_100%)] sm:bg-[linear-gradient(180deg,rgba(16,19,18,0.14)_0%,rgba(16,19,18,0.58)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-36 bg-[linear-gradient(180deg,transparent,rgba(243,241,236,0.98))] sm:h-40" />
       <div className="absolute right-[-120px] top-16 -z-10 hidden h-[420px] w-[420px] rounded-full border border-[#B79A6B]/15 lg:block" />
 
-      <Container className="flex flex-1 items-center pb-28 sm:pb-32 lg:pb-28">
-        <div className="grid w-full -translate-y-6 gap-6 pt-6 sm:pt-8 md:-translate-y-8 lg:-translate-y-10 lg:pt-0">
+      <Container className="flex flex-1 items-center pb-52 sm:pb-32 lg:pb-28">
+        <div className="grid w-full -translate-y-3 gap-6 pt-7 sm:-translate-y-6 sm:pt-8 md:-translate-y-8 lg:-translate-y-10 lg:pt-0">
           <div className="grid items-center lg:grid-cols-[minmax(0,0.88fr)_minmax(260px,0.62fr)]">
             <div className="max-w-3xl">
               <p className="mb-4 inline-flex rounded-[4px] border border-[#B79A6B]/45 bg-[#FCFBF8]/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#FCFBF8]/86 backdrop-blur">
@@ -142,7 +157,7 @@ export function Hero() {
         </div>
       </Container>
 
-      <div className="absolute inset-x-0 bottom-5 z-10 sm:bottom-6">
+      <div className="hero-metrics-shell absolute inset-x-0 bottom-5 z-10 sm:bottom-6">
         <Container>
           <HeroMetrics />
         </Container>
