@@ -53,14 +53,14 @@ export function Header() {
 
           <div className="flex shrink-0 items-center gap-3">
             <Button
-              className={`hidden md:inline-flex ${headerActionClasses}`}
+              className={`inline-flex ${headerActionClasses}`}
               href="tel:+7"
               variant="ghost"
             >
               +7 [заменить здесь]
             </Button>
             <Button
-              className={headerActionClasses}
+              className={`hidden sm:inline-flex ${headerActionClasses}`}
               href="#contacts"
               variant="ghost"
             >
