@@ -60,7 +60,7 @@ export function Header() {
               +7 [заменить здесь]
             </Button>
             <Button
-              className={`hidden sm:inline-flex ${headerActionClasses}`}
+              className={`hidden lg:inline-flex ${headerActionClasses}`}
               href="#contacts"
               variant="ghost"
             >
