@@ -43,9 +43,12 @@ const serviceCards: ServiceCard[] = [
     fallbackLabel: "Благоустройство",
     bullets: [
       "планировка участка",
-      "дорожки и площадки",
-      "освещение и дренаж",
-      "озеленение и финальная отделка",
+      "опорные стены, забор, ворота",
+      "парковка и дорожки",
+      "ливневки и дренажи",
+      "навесы, бани, Хоз постройки",
+      "автополив, ландшафтное освещение",
+      "газон и озеленение",
     ],
     imageSequence: [
       "исходный участок",
@@ -63,10 +66,11 @@ const serviceCards: ServiceCard[] = [
     imagePath: "/images/service-house.jpg",
     fallbackLabel: "Дом под ключ",
     bullets: [
+      "помощь с выбором участка",
+      "инженерные изыскания",
       "проектирование",
-      "фундамент и коробка",
-      "кровля и фасад",
-      "инженерия, отделка и сдача",
+      "строительство",
+      "сдача теплого контура",
     ],
     imageSequence: [
       "проект",
@@ -109,10 +113,6 @@ export function Services() {
               Основные направления работы
             </h2>
           </div>
-          <p className="max-w-xl text-base leading-8 text-[#6D6A64] lg:text-right">
-            Берем на себя ремонт, строительство и благоустройство - от
-            подготовки и проекта до чистовой сдачи объекта.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:mt-14 lg:grid-cols-3">
@@ -133,9 +133,6 @@ export function Services() {
                   <span className="rounded-[4px] border border-[#FCFBF8]/30 bg-[#101312]/28 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#FCFBF8] backdrop-blur">
                     {service.fallbackLabel}
                   </span>
-                  <span className="text-xs font-medium text-[#FCFBF8]/74">
-                    {service.imageSequence.length} этапов
-                  </span>
                 </div>
               </div>
 
@@ -155,16 +152,6 @@ export function Services() {
                     </li>
                   ))}
                 </ul>
-
-                <a
-                  className="mt-auto inline-flex min-h-11 items-center pt-7 text-sm font-semibold text-[#2F4A3C] transition duration-200 group-hover:text-[#B79A6B]"
-                  href="#contacts"
-                >
-                  Подробнее
-                  <span aria-hidden="true" className="ml-2">
-                    →
-                  </span>
-                </a>
               </div>
             </article>
           ))}

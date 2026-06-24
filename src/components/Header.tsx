@@ -10,6 +10,9 @@ const navItems = [
   { label: "Контакты", href: "#contacts" },
 ];
 
+const headerActionClasses =
+  "!min-h-9 whitespace-nowrap !border-[#F3F1EC]/34 !bg-[#F3F1EC]/8 !px-3 !py-2 text-xs !font-bold !text-[#F3F1EC] !shadow-[0_10px_24px_rgba(0,0,0,0.14)] transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out hover:!-translate-y-px hover:!border-[#F3F1EC] hover:!bg-[#F3F1EC] hover:!text-[#101312] hover:!shadow-[0_14px_30px_rgba(0,0,0,0.20)] focus-visible:!border-[#F3F1EC] focus-visible:!bg-[#F3F1EC] focus-visible:!text-[#101312] sm:!min-h-10 sm:!px-4 sm:text-sm";
+
 export function Header() {
   return (
     <header className="sticky inset-x-0 top-0 z-[100] border-b border-[#F3F1EC]/12 bg-[linear-gradient(90deg,rgba(16,19,18,0.98)_0%,rgba(30,46,37,0.98)_42%,rgba(47,74,60,0.98)_100%)] shadow-[0_14px_36px_rgba(16,19,18,0.18)] backdrop-blur-md">
@@ -34,12 +37,12 @@ export function Header() {
           </a>
 
           <nav
-            className="hidden items-center gap-5 text-sm font-medium text-[#F3F1EC]/72 lg:flex"
+            className="hidden items-center gap-1 text-sm font-semibold lg:flex"
             aria-label="Основная навигация"
           >
             {navItems.map((item) => (
               <a
-                className="transition duration-200 hover:text-[#B79A6B]"
+                className="header-nav-link relative rounded-full border border-transparent px-2.5 py-1.5 text-[#F3F1EC]/92 transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out"
                 href={item.href}
                 key={item.href}
               >
@@ -49,18 +52,19 @@ export function Header() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-3">
-            <a
-              className="hidden text-sm font-semibold text-[#F3F1EC]/78 transition duration-200 hover:text-[#B79A6B] md:inline"
+            <Button
+              className={`hidden md:inline-flex ${headerActionClasses}`}
               href="tel:+7"
+              variant="ghost"
             >
               +7 [заменить здесь]
-            </a>
+            </Button>
             <Button
-              className="min-h-9 border-[#B79A6B]/48 bg-transparent px-3 py-2 text-xs text-[#F3F1EC] shadow-none hover:border-[#B79A6B] hover:bg-[#B79A6B] hover:text-[#101312] sm:min-h-10 sm:px-4 sm:text-sm"
+              className={headerActionClasses}
               href="#contacts"
               variant="ghost"
             >
-              Получить смету
+              Оставить заявку
             </Button>
           </div>
         </div>

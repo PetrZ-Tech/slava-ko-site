@@ -20,7 +20,7 @@ type StaticMetric = {
 type HeroMetric = AnimatedMetric | StaticMetric;
 
 const heroMetrics: HeroMetric[] = [
-  { value: 10, suffix: "+", label: "лет опыта", animated: true, editable: true },
+  { value: 15, suffix: "+", label: "лет опыта", animated: true, editable: true },
   { value: 100, suffix: "+", label: "объектов", animated: true, editable: true },
   { value: 30, suffix: "+", label: "специалистов", animated: true, editable: true },
   { value: "Гарантия", label: "на работы", animated: false, editable: true },
