@@ -1,8 +1,8 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import type { CSSProperties } from "react";
+import { HeroContactActions } from "@/components/HeroContactActions";
 import { HeroMetrics } from "@/components/HeroMetrics";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
 type HeroSlide = {
@@ -103,7 +103,7 @@ export function Hero() {
       <Container className="flex flex-1 items-center pb-52 sm:pb-32 lg:pb-28">
         <div className="grid w-full -translate-y-3 gap-6 pt-7 sm:-translate-y-6 sm:pt-8 md:-translate-y-8 lg:-translate-y-10 lg:pt-0">
           <div className="grid items-center lg:grid-cols-[minmax(0,0.88fr)_minmax(260px,0.62fr)]">
-            <div className="max-w-3xl">
+            <div className="relative z-10 max-w-3xl">
               <p className="mb-4 inline-flex rounded-[4px] border border-[#B79A6B]/45 bg-[#FCFBF8]/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#FCFBF8]/86 backdrop-blur">
                 Нижний Новгород и область
               </p>
@@ -116,12 +116,7 @@ export function Hero() {
                 готового объекта.
               </p>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button href="#contacts">Рассчитать стоимость</Button>
-                <Button href="#services" variant="secondary">
-                  Посмотреть услуги
-                </Button>
-              </div>
+              <HeroContactActions />
 
               <ul className="mt-7 grid gap-3 text-sm text-[#FCFBF8]/84 sm:grid-cols-2">
                 {heroBenefits.map((benefit) => (

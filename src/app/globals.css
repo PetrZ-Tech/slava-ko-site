@@ -90,6 +90,21 @@ a {
   animation-delay: var(--hero-slide-delay);
 }
 
+.hero-contact-label {
+  display: none;
+}
+
+.hero-contact-link {
+  color: #2f4a3c;
+}
+
+.hero-contact-link:hover,
+.hero-contact-link:focus-visible {
+  background: #2f4a3c;
+  border-color: #b79a6b;
+  color: #f3f1ec;
+}
+
 @media (min-width: 640px) {
   .hero-slide {
     background-position: var(--hero-slide-tablet-position);
@@ -108,6 +123,41 @@ a {
 @media (min-width: 1024px) {
   .hero-slide {
     background-position: var(--hero-slide-desktop-position);
+  }
+
+  .hero-contact-panel {
+    align-items: center;
+    left: clamp(-7rem, -6vw, -5.5rem);
+    top: clamp(17.5rem, 34vh, 20rem);
+    width: 48px;
+  }
+
+  .hero-contact-label {
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    display: block;
+    transform: translate(-8px, -50%) scale(0.98);
+    border: 1px solid rgba(183, 154, 107, 0.35);
+    border-radius: 999px;
+    background: rgba(16, 19, 18, 0.82);
+    color: #f3f1ec;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    opacity: 0;
+    padding: 8px 12px;
+    pointer-events: none;
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease;
+    white-space: nowrap;
+  }
+
+  .hero-contact-link:hover .hero-contact-label,
+  .hero-contact-link:focus-visible .hero-contact-label {
+    opacity: 1;
+    transform: translate(0, -50%) scale(1);
   }
 
   .hero-metrics-shell > div > div {
