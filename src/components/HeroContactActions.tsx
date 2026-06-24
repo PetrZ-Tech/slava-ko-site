@@ -1,36 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties, KeyboardEvent, PointerEvent } from "react";
+import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 
 type HeroContactId = "max" | "telegram" | "email";
 
 const heroContactLinks: {
   id: HeroContactId;
   label: string;
+  shortLabel: string;
   href: string;
 }[] = [
   {
     id: "max",
     label: "Написать в MAX",
+    shortLabel: "MAX",
     href: "#",
   },
   {
     id: "telegram",
     label: "Написать в Telegram",
+    shortLabel: "Telegram",
     href: "https://t.me/username",
   },
   {
     id: "email",
     label: "Написать на почту",
+    shortLabel: "Почта",
     href: "mailto:example@example.com",
   },
 ];
 
 const heroCtaClasses =
   "inline-flex min-h-12 w-full items-center justify-center rounded-[6px] border border-[#2F4A3C] bg-[#2F4A3C] px-5 py-3 text-sm font-semibold leading-none text-[#FCFBF8] shadow-[0_18px_45px_rgba(16,19,18,0.22)] transition duration-200 hover:border-[#24382E] hover:bg-[#24382E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B79A6B] sm:w-auto";
-
-const initialScrollProtectionMs = 900;
 
 function ContactIcon({ id }: { id: HeroContactId }) {
   if (id === "telegram") {
@@ -113,104 +115,41 @@ function ContactIcon({ id }: { id: HeroContactId }) {
 
 export function HeroContactActions() {
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const openScrollYRef = useRef(0);
-  const pointerToggleHandledRef = useRef(false);
 
   useEffect(() => {
     if (!isContactOpen) {
       return;
     }
 
-    let canCloseAfterInitialMotion = false;
-    const readyTimer = window.setTimeout(() => {
-      openScrollYRef.current = window.scrollY;
-      canCloseAfterInitialMotion = true;
-    }, initialScrollProtectionMs);
+    const desktopPointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    );
+
+    if (!desktopPointer.matches) {
+      return;
+    }
 
     const closeContactsOnScroll = () => {
-      if (!canCloseAfterInitialMotion) {
-        openScrollYRef.current = window.scrollY;
-        return;
-      }
-
-      if (Math.abs(window.scrollY - openScrollYRef.current) <= 1) {
-        return;
-      }
-
       setIsContactOpen(false);
-    };
-
-    const closeContactsAfterScrollIntent = () => {
-      window.requestAnimationFrame(closeContactsOnScroll);
     };
 
     window.addEventListener("scroll", closeContactsOnScroll, {
       passive: true,
     });
-    window.addEventListener("wheel", closeContactsAfterScrollIntent, {
-      passive: true,
-    });
-    window.addEventListener("touchmove", closeContactsAfterScrollIntent, {
-      passive: true,
-    });
 
     return () => {
-      window.clearTimeout(readyTimer);
       window.removeEventListener("scroll", closeContactsOnScroll);
-      window.removeEventListener("wheel", closeContactsAfterScrollIntent);
-      window.removeEventListener("touchmove", closeContactsAfterScrollIntent);
     };
   }, [isContactOpen]);
-
-  const handleContactToggle = () => {
-    setIsContactOpen((current) => {
-      if (!current) {
-        openScrollYRef.current = window.scrollY;
-      }
-
-      return !current;
-    });
-  };
-
-  const handleContactKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key !== "Enter" && event.key !== " ") {
-      return;
-    }
-
-    event.preventDefault();
-    handleContactToggle();
-  };
-
-  const handleContactPointerDown = (
-    event: PointerEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-    pointerToggleHandledRef.current = true;
-    handleContactToggle();
-
-    window.setTimeout(() => {
-      pointerToggleHandledRef.current = false;
-    }, 100);
-  };
-
-  const handleContactClick = () => {
-    if (pointerToggleHandledRef.current) {
-      return;
-    }
-
-    handleContactToggle();
-  };
 
   return (
     <>
       <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:items-center">
         <button
-          aria-controls="hero-contact-links"
+          aria-controls="hero-contact-actions"
           aria-expanded={isContactOpen}
           className={heroCtaClasses}
-          onClick={handleContactClick}
-          onKeyDown={handleContactKeyDown}
-          onPointerDown={handleContactPointerDown}
+          onClick={() => setIsContactOpen((value) => !value)}
           type="button"
         >
           Связаться с нами
@@ -228,7 +167,7 @@ export function HeroContactActions() {
             ? "pointer-events-auto opacity-100 translate-x-0 scale-100"
             : "pointer-events-none opacity-0 -translate-x-2 scale-[0.96]"
         }`}
-        id="hero-contact-links"
+        id="hero-contact-actions"
         style={{ maxHeight: isContactOpen ? "220px" : "0px" }}
       >
         {heroContactLinks.map((link, index) => {
@@ -237,7 +176,7 @@ export function HeroContactActions() {
           return (
             <a
               aria-label={link.label}
-              className={`hero-contact-link relative inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-[rgba(183,154,107,0.45)] bg-[rgba(243,241,236,0.92)] text-[#2F4A3C] shadow-[0_14px_34px_rgba(16,19,18,0.20)] transition-[opacity,transform,background-color,border-color,color] duration-200 hover:-translate-y-0.5 hover:border-[#B79A6B] hover:bg-[#2F4A3C] hover:text-[#F3F1EC] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B79A6B] ${
+              className={`hero-contact-link relative inline-flex min-h-16 min-w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-[8px] border border-[rgba(183,154,107,0.45)] bg-[rgba(243,241,236,0.92)] px-2 py-2 text-[#2F4A3C] shadow-[0_14px_34px_rgba(16,19,18,0.20)] transition-[opacity,transform,background-color,border-color,color] duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B79A6B] lg:size-12 lg:min-h-0 lg:min-w-0 lg:flex-row lg:gap-0 lg:rounded-full lg:p-0 ${
                 isContactOpen
                   ? "opacity-100 translate-y-0 scale-100"
                   : "opacity-0 translate-y-2.5 scale-[0.96]"
@@ -252,6 +191,9 @@ export function HeroContactActions() {
               tabIndex={isContactOpen ? undefined : -1}
             >
               <ContactIcon id={link.id} />
+              <span className="hero-contact-short-label text-[11px] font-semibold leading-none lg:hidden">
+                {link.shortLabel}
+              </span>
               <span className="hero-contact-label">{link.label}</span>
             </a>
           );

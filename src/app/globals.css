@@ -98,13 +98,6 @@ a {
   color: #2f4a3c;
 }
 
-.hero-contact-link:hover,
-.hero-contact-link:focus-visible {
-  background: #2f4a3c;
-  border-color: #b79a6b;
-  color: #f3f1ec;
-}
-
 @media (min-width: 640px) {
   .hero-slide {
     background-position: var(--hero-slide-tablet-position);
@@ -132,6 +125,21 @@ a {
     width: 48px;
   }
 
+  .hero-metrics-shell > div > div {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-contact-link:hover,
+  .hero-contact-link:focus-visible {
+    background: #2f4a3c;
+    border-color: #b79a6b;
+    color: #f3f1ec;
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
   .hero-contact-label {
     position: absolute;
     left: calc(100% + 12px);
@@ -158,10 +166,6 @@ a {
   .hero-contact-link:focus-visible .hero-contact-label {
     opacity: 1;
     transform: translate(0, -50%) scale(1);
-  }
-
-  .hero-metrics-shell > div > div {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
