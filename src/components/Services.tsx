@@ -102,9 +102,9 @@ function getMediaStyle(service: ServiceCard): CSSProperties {
 
 export function Services() {
   return (
-    <Section className="bg-[#F3F1EC] pb-18 pt-6 sm:pb-24 lg:pb-28" id="services">
+    <Section className="bg-[#F3F1EC] pb-12 pt-0 sm:pb-16 lg:pb-20" id="services">
       <Container>
-        <div className="flex flex-col gap-5 border-t border-[#2F4A3C]/10 pt-16 sm:pt-20 lg:flex-row lg:items-end lg:justify-between lg:pt-24">
+        <div className="flex flex-col gap-5 border-t border-[#2F4A3C]/10 pt-10 sm:pt-12 lg:flex-row lg:items-end lg:justify-between lg:pt-14">
           <div className="max-w-3xl">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#B79A6B]">
               Что мы делаем

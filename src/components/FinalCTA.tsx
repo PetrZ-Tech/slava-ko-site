@@ -7,7 +7,7 @@ import { contactActions, ctaBenefits } from "@/data/home";
 export function FinalCTA() {
   return (
     <Section
-      className="relative overflow-hidden bg-[#F3F1EC] pb-12 pt-18 sm:pb-16 sm:pt-24 lg:pb-20 lg:pt-28"
+      className="relative overflow-hidden bg-[#F3F1EC] py-12 sm:py-16 lg:py-20"
       id="contacts"
     >
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(252,251,248,0)_0%,rgba(85,107,87,0.08)_100%)]" />

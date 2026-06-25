@@ -131,7 +131,7 @@ function WhyUsIcon({ icon }: { icon: WhyUsIcon }) {
 export function WhyUs() {
   return (
     <Section
-      className="relative overflow-hidden bg-[#F3F1EC] py-18 text-[#2B2B2B] sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-[#F3F1EC] py-12 text-[#2B2B2B] sm:py-16 lg:py-20"
       id="why-us"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(183,154,107,0.13),transparent_28%),radial-gradient(circle_at_82%_22%,rgba(85,107,87,0.11),transparent_30%)]" />

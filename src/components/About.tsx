@@ -32,32 +32,32 @@ const processPrinciples = [
 
 const advantages = [
   {
-    title: "Путь от отделки к стройке",
+    title: "Опыт и системный подход",
     description:
       "Практический опыт начинался с квартир и постепенно вырос до комплексных загородных объектов.",
   },
   {
-    title: "Работа с разными задачами",
+    title: "Профессиональная команда",
     description:
       "Беремся за ремонт, отделку, благоустройство, постройки на участке и строительство домов.",
   },
   {
-    title: "Понятные этапы",
+    title: "Проверенные поставщики",
     description:
       "До старта обсуждаем последовательность работ, смету и ожидаемый результат.",
   },
   {
-    title: "Один подрядчик",
+    title: "Прозрачная смета",
     description:
       "Заказчик может передать нам весь цикл: от участка и проекта до дома и территории.",
   },
   {
-    title: "Ответственный подход",
+    title: "Контроль качества",
     description:
       "Не обещаем лишнего и заранее проговариваем решения, которые влияют на сроки и бюджет.",
   },
   {
-    title: "Развитие через доверие",
+    title: "Гарантия на работы",
     description:
       "Растем за счет опыта на реальных объектах и задач, с которыми к нам возвращаются клиенты.",
   },
@@ -66,7 +66,7 @@ const advantages = [
 export function About() {
   return (
     <Section
-      className="relative overflow-hidden bg-[#F3F1EC] pb-18 pt-18 sm:pb-24 sm:pt-24 lg:pb-28 lg:pt-28"
+      className="relative overflow-hidden bg-[#F3F1EC] py-12 sm:py-16 lg:py-20"
       id="about"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-[#2F4A3C]/10" />
@@ -147,7 +147,7 @@ export function About() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
           {advantages.map((advantage, index) => (
             <article
-              className="group min-h-52 border border-[#2F4A3C]/12 bg-[#FCFBF8] p-6 transition duration-200 hover:-translate-y-1 hover:border-[#B79A6B]/50 hover:shadow-[0_18px_50px_rgba(16,19,18,0.08)] sm:p-7"
+              className="group min-h-32 border border-[#2F4A3C]/12 bg-[#FCFBF8] p-5 transition duration-200 hover:-translate-y-1 hover:border-[#B79A6B]/50 hover:shadow-[0_18px_50px_rgba(16,19,18,0.08)] sm:min-h-36 sm:p-6"
               key={advantage.title}
             >
               <div className="flex items-center justify-between gap-4">
@@ -156,12 +156,9 @@ export function About() {
                 </span>
                 <span className="h-px flex-1 bg-[#2F4A3C]/12 transition group-hover:bg-[#B79A6B]/50" />
               </div>
-              <h3 className="mt-7 text-xl font-semibold leading-tight text-[#2B2B2B]">
+              <h3 className="mt-5 text-xl font-semibold leading-tight text-[#2B2B2B]">
                 {advantage.title}
               </h3>
-              <p className="mt-4 text-sm leading-7 text-[#6D6A64]">
-                {advantage.description}
-              </p>
             </article>
           ))}
         </div>

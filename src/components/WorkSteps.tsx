@@ -80,9 +80,9 @@ function getWorkStepBackgroundStyle(step: WorkStep): CSSProperties {
 
 export function WorkSteps() {
   return (
-    <Section className="bg-[#F3F1EC] py-18 sm:py-24 lg:py-28" id="process">
+    <Section className="bg-[#F3F1EC] pb-12 pt-0 sm:pb-16 lg:pb-20" id="process">
       <Container>
-        <div className="border-t border-[#2F4A3C]/10 pt-16 sm:pt-20 lg:pt-24">
+        <div className="border-t border-[#2F4A3C]/10 pt-10 sm:pt-12 lg:pt-14">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(320px,0.50fr)] lg:items-end">
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#B79A6B]">
